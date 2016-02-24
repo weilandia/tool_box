@@ -14,12 +14,19 @@
           <!-- Collect the nav links, forms, and other content for toggling -->
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-8">
               <ul class="nav navbar-nav">
-                  <li class="active"><%= link_to 'Home', root_path%></li>
-                  <% if current_user %>
+                  <% if current_admin? %>
+                    <li><%= link_to 'Home', admin_user_path(current_user)%></li>
+                    <li><%= link_to 'All Users', admin_users_path%></li>
+                    <li><%= link_to 'Logout', logout_path, method: :delete %></li>
+                  <% elsif current_user %>
+                    <li><%= link_to 'Home', user_path(current_user)%></li>
+                    <li><%= link_to 'All Users', users_path%></li>
                     <li><%= link_to 'Logout', logout_path, method: :delete %></li>
                   <% else %>
+                    <li><%= link_to 'Home', "/"%></li>
                     <li><%= link_to 'Login', login_path %></li>
-                   <li><%= link_to 'Signup', new_user_path %></li>
+                     <li><%= link_to 'Signup', new_user_path %></li>
+                     <li><%= link_to 'All Users', users_path%></li>
                   <% end %>
               </ul>
           </div><!-- /.navbar-collapse -->

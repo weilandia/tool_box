@@ -15,6 +15,6 @@ class UserRegistersForToolChestTest < FeatureTest
     user = User.last
     assert_equal "/users/#{user.id}", current_path
 
-    assert page.has_content?('Hey Nick, welcome to Tool Chest')
+    assert page.has_content?('Hey Nick')
   end
 end

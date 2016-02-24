@@ -4,3 +4,5 @@
 Rails.application.config.assets.version = '1.0'
 
 Rails.application.config.assets.precompile += %w( tool-box.jpg )
+
+Rails.application.config.assets.precompile += %w( bootstrap-social.css )

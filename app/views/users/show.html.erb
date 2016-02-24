@@ -1,5 +1,10 @@
 <div class="container">
-  <h2>Hey <%= @user.name %>!</h2>
+  <% if current_user == @user %>
+    <h2>Hey <%= @user.name %>!</h2>
+  <% else %>
+    <h2><%= @user.name %>'s Tools:</h2>
+  <% end %>
+  <br>
   <div class="table-responsive">
     <table class="table">
       <thead>
@@ -19,8 +24,13 @@
             <td><%= tool.name %></td>
             <td><%= tool.price %></td>
             <td><%= tool.quantity %></td>
-            <td><%= link_to 'Edit', edit_user_tool_path(@user, tool) %></td>
-            <td><%= link_to 'Destroy', [@user, tool], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <% if current_user == @user %>
+              <td><%= link_to 'Edit', edit_user_tool_path(@user, tool) %></td>
+              <td><%= link_to 'Remove', [@user, tool], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <% else %>
+              <td></td>
+              <td></td>
+            <% end %>
           </tr>
         <% end %>
         <% end %>
@@ -28,6 +38,14 @@
     </table>
   </div>
   <div>
-  <%= link_to 'New Tool', new_user_tool_path(params[:id]), class: "btn btn-primary" %>
+  <% if current_admin? %>
+    <%= link_to 'Delete User', user_path(@user),  method: :delete, class: "btn btn-danger", data: { confirm: 'Are you sure?' } %>
+    <%= link_to 'Home', admin_user_path(current_user), class: "btn btn-github" %>
+  <% elsif current_user == @user %>
+    <%= link_to 'New Tool', new_user_tool_path(params[:id]), class: "btn btn-github" %>
+    <%= link_to 'Home', user_path(current_user), class: "btn btn-github" %>
+  <% else %>
+    <%= link_to 'Home', user_path(current_user), class: "btn btn-github" %>
+  <% end %>
   </div>
 </div>

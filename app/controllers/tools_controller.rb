@@ -1,23 +1,13 @@
 class ToolsController < ApplicationController
   before_action :set_tool, only: [:show, :edit, :update, :destroy]
 
-  def index
-    @user = User.find_by(params[:user_id])
-    @tools = @user.tools.all
-  end
-
-  def show
-    @user = User.find(params[:user_id])
-
-  end
-
   def new
-    @user = User.find(params[:user_id])
+    @user = current_user
     @tool = @user.tools.new
   end
 
   def edit
-    @user = User.find(params[:user_id])
+    @user = current_user
   end
 
   def create

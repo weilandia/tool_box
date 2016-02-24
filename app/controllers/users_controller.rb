@@ -3,6 +3,10 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
+  def index
+    @users = User.all
+  end
+
   def create
     @user = User.create(user_params)
     session[:user_id] = @user.id
@@ -10,7 +14,14 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = current_user
+    @user = User.find(params[:id])
+  end
+
+  def destroy
+    user = User.find(params[:id])
+    user.destroy
+    flash[:alert] = "#{user.username} was removed."
+    redirect_to admin_users_path
   end
 
   private

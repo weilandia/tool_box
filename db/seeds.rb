@@ -12,3 +12,5 @@
 
   user.tools.create(name: Faker::Hipster.word, price: Faker::Number.number(2).to_i, quantity: Faker::Number.number(2).to_i, user_id: user.id)
 end
+
+User.create(name: "admin", username: "admin", password: "admin", role: 1)

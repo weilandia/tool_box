@@ -15,8 +15,14 @@
     color: white;
 }
 
-a {
+#landing a {
   text-decoration: none;
+  color: #DADFE1;
+}
+
+#landing a:hover {
+  text-decoration: none;
+  color: #DADFE1;
 }
 
 #landing {
@@ -27,14 +33,10 @@ a {
 }
 
 .introduction {
-  color: white;
-  width:400px;
-  height:200px;
-  position:absolute;
-  left:50%;
-  top:40%;
-  margin:-100px 0 0 -175px;
+  position:relative;
   text-align: center;
+  top:20%;
+  line-height: 90px;
  }
 
  .name {
@@ -43,4 +45,8 @@ a {
   font-weight: bold;
   border-radius: 25px;
   text-decoration: none;
+ }
+
+ .navbar-brand {
+   font-weight: bold;
  }
