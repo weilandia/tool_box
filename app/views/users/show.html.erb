@@ -1,0 +1,33 @@
+<div class="container">
+  <h2>Hey <%= @user.name %>!</h2>
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Price</th>
+          <th>Quantity</th>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% if @user.tools %>
+        <% @user.tools.each do |tool| %>
+          <tr>
+            <td><%= tool.name %></td>
+            <td><%= tool.price %></td>
+            <td><%= tool.quantity %></td>
+            <td><%= link_to 'Edit', edit_user_tool_path(@user, tool) %></td>
+            <td><%= link_to 'Destroy', [@user, tool], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div>
+  <%= link_to 'New Tool', new_user_tool_path(params[:id]), class: "btn btn-primary" %>
+  </div>
+</div>

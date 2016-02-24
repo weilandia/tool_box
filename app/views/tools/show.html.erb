@@ -12,6 +12,5 @@
   <strong>Quantity:</strong>
   <%= @tool.quantity %>
 </p>
-
-<%= link_to 'Edit', edit_tool_path(@tool) %> |
-<%= link_to 'Back', tools_path %>
+<%= link_to 'Edit', edit_user_tool_path(@user, @tool) %> |
+<%= link_to 'Back', user_tools_path %>
